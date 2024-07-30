@@ -3,6 +3,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 AIC_UBOOT_DEVICETREE ?= "volans.dts"
 SRC_URI:append = " file://${AIC_UBOOT_DEVICETREE}"
 SRC_URI:append = " file://001-Disable-FMC_WDT2.patch"
+SRC_URI:append = " file://AIC_uboot.cfg"
 
 AIC_post_do_patch() {
     for DTS in "${AIC_UBOOT_DEVICETREE}"; do
