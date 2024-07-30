@@ -1,0 +1,12 @@
+diff --git a/arch/arm/mach-aspeed/ast2600/board_common.c b/arch/arm/mach-aspeed/ast2600/board_common.c
+index 70d2a97b5d..4411188d87 100644
+--- a/arch/arm/mach-aspeed/ast2600/board_common.c
++++ b/arch/arm/mach-aspeed/ast2600/board_common.c
+@@ -71,6 +71,7 @@ __weak int board_init(void)
+ 			writel(0x1, 0x1e600000);
+ 		}
+ 	}
++	writel(0x0, 0x1E620064);	// Disable FMC_WDT2
+ 
+ 	gd->bd->bi_boot_params = CONFIG_SYS_SDRAM_BASE + 0x100;
+ 
