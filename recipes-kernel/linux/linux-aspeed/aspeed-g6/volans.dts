@@ -342,3 +342,7 @@
 	status = "okay";
 	memory-region = <&gfx_memory>;
 };
+
+&espi {
+	status = "okay";
+};
