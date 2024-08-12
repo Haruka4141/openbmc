@@ -1,5 +1,5 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-CHIPS = "pwm-tacho-controller@1e610000"
+CHIPS = "pwm-tach-controller@1e610000"
 ENVS = "obmc/hwmon/{0}"
 ITEMSFMT = "ahb/apb/{0}.conf"
 ITEMS = "${@compose_list(d, 'ITEMSFMT', 'CHIPS')}"
