@@ -213,9 +213,6 @@
 
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_rgmii2_default>;
-	mac1-clk-delay = <0x10 0x19
-					  0x10 0x10
-					  0x10 0x10>;
 };
 
 &mac2 {
@@ -416,4 +413,11 @@
 
 &espi {
 	status = "okay";
+};
+
+&syscon {
+	uart-clock-high-speed;
+	mac1-clk-delay = <0x10 0x19
+						0x10 0x10
+						0x10 0x10>;
 };
