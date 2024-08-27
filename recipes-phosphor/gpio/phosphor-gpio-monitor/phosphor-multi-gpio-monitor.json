@@ -1,0 +1,9 @@
+[
+    {
+        "Name": "ID_BUTTON",
+        "LineName": "id-button",
+        "EventMon": "FALLING",
+        "Target": "id-button-pressed.service",
+        "Continue": true
+    }
+]

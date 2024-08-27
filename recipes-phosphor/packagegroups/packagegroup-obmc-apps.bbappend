@@ -1,3 +1,4 @@
 RDEPENDS:${PN}-extras:append = " webui-vue \
                                  ipmitool \
-                                 htop "
+                                 htop \
+                                 phosphor-gpio-monitor-monitor"
