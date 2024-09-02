@@ -3,6 +3,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 AIC_KERNEL_DEVICETREE ?= "volans.dts"
 SRC_URI += "file://${AIC_KERNEL_DEVICETREE}"
 SRC_URI += "file://AIC_kernel.cfg"
+SRC_URI += "file://001-Enable_GPIO_pass_through.patch"
 
 KSRC = "git://github.com/AspeedTech-BMC/linux;protocol=https;branch=${KBRANCH}"
 KBRANCH = "aspeed-master-v6.6"

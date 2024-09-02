@@ -432,6 +432,10 @@
 };
 
 &gpio0 {
+	/* Enable GPIOP0 and GPIOP2 pass-through by default */
+	pinctrl-names = "pass-through";
+	pinctrl-0 = <&pinctrl_thru0_default
+				 &pinctrl_thru1_default>;
 	gpio-line-names =
 		/*A0 - A7*/     "", "", "", "", "", "", "", "",
 		/*B0 - B7*/     "", "", "", "", "", "", "", "",
@@ -448,7 +452,7 @@
 		/*M0 - M7*/     "", "", "", "", "", "", "", "",
 		/*N0 - N7*/     "", "", "", "", "", "", "", "",
 		/*O0 - O7*/     "", "", "", "", "", "", "", "",
-		/*P0 - P7*/     "", "POWER_OUT", "", "RESET_OUT", "", "", "", "",
+		/*P0 - P7*/     "POWER_BUTTON", "POWER_OUT", "RESET_BUTTON", "RESET_OUT", "", "", "", "",
 		/*Q0 - Q7*/     "", "", "", "", "", "", "", "",
 		/*R0 - R7*/     "POST_COMPLETE", "", "", "", "", "", "", "",	// POST_COMPLETE is dummy
 		/*S0 - S7*/     "", "", "", "", "", "", "", "",

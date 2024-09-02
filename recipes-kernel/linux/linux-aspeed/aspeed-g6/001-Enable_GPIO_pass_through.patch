@@ -1,0 +1,141 @@
+diff --git a/drivers/gpio/gpio-aspeed.c b/drivers/gpio/gpio-aspeed.c
+index 781183d28a98..8c4e5665eb1f 100644
+--- a/drivers/gpio/gpio-aspeed.c
++++ b/drivers/gpio/gpio-aspeed.c
+@@ -1738,6 +1738,7 @@ static int __init aspeed_gpio_probe(struct platform_device *pdev)
+ 	const struct of_device_id *gpio_id;
+ 	struct gpio_irq_chip *girq;
+ 	struct aspeed_gpio *gpio;
++	struct pinctrl *pinctrl;
+ 	int rc, irq, i, banks, err;
+ 	u32 ngpio;
+ 
+@@ -1789,6 +1790,15 @@ static int __init aspeed_gpio_probe(struct platform_device *pdev)
+ 	if (!gpio->dcache)
+ 		return -ENOMEM;
+ 
++	/*
++	 * Select the pass-through pinctrl config to enable the pass-through
++	 * mux for GPIOs marked as pass-through. Then call pinctrl_put() to
++	 * release claim of the GPIO pins, so they can be requested at runtime.
++	 */
++	pinctrl = pinctrl_get_select(&pdev->dev, "pass-through");
++	if (!IS_ERR(pinctrl))
++		pinctrl_put(pinctrl);
++
+ 	/*
+ 	 * Populate it with initial values read from the HW and switch
+ 	 * all command sources to the ARM by default
+diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+index b0f7a3edd852..01c8633d43e6 100644
+--- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
++++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+@@ -2837,6 +2837,22 @@ static int aspeed_g6_sig_expr_set(struct aspeed_pinmux_data *ctx,
+ 	return 0;
+ }
+ 
++#define GPIOP1 121
++#define GPIOP3 123
++static void aspeed_g6_gpio_disable_free(struct pinctrl_dev *pctldev,
++			      struct pinctrl_gpio_range *range,
++			      unsigned int offset)
++{
++	/*
++	 * If we're freeing GPIOP1 (121) or GPIOP3 (123) then re-enable the
++	 * pass-through mux setting; otherwise, do nothing.
++	 */
++	if (offset != GPIOP1 && offset != GPIOP3)
++		return;
++
++	aspeed_gpio_disable_free(pctldev, range, offset);
++}
++
+ static const struct aspeed_pin_config_map aspeed_g6_pin_config_map[] = {
+ 	{ PIN_CONFIG_BIAS_PULL_DOWN,  0,   1, BIT_MASK(0)},
+ 	{ PIN_CONFIG_BIAS_PULL_DOWN, -1,   0, BIT_MASK(0)},
+@@ -2877,6 +2894,7 @@ static const struct pinmux_ops aspeed_g6_pinmux_ops = {
+ 	.get_function_groups = aspeed_pinmux_get_fn_groups,
+ 	.set_mux = aspeed_pinmux_set_mux,
+ 	.gpio_request_enable = aspeed_gpio_request_enable,
++	.gpio_disable_free = aspeed_g6_gpio_disable_free,
+ 	.strict = true,
+ };
+ 
+diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed.c b/drivers/pinctrl/aspeed/pinctrl-aspeed.c
+index a10d2ab8af5c..2ea937f8212b 100644
+--- a/drivers/pinctrl/aspeed/pinctrl-aspeed.c
++++ b/drivers/pinctrl/aspeed/pinctrl-aspeed.c
+@@ -481,6 +481,59 @@ int aspeed_g7_gpio_request_enable(struct pinctrl_dev *pctldev,
+ 	return 0;
+ }
+ 
++void aspeed_gpio_disable_free(struct pinctrl_dev *pctldev,
++			      struct pinctrl_gpio_range *range,
++			      unsigned int offset)
++{
++	struct aspeed_pinctrl_data *pdata = pinctrl_dev_get_drvdata(pctldev);
++	const struct aspeed_pin_desc *pdesc = pdata->pins[offset].drv_data;
++	const struct aspeed_sig_expr ***prios, **funcs, *expr;
++	int ret;
++
++	if (!pdesc)
++		return;
++
++	dev_dbg(pctldev->dev,
++		"Freeing pass-through pin %s (%d). Re-enabling pass-through.\n",
++		pdesc->name, offset);
++
++	prios = pdesc->prios;
++
++	if (!prios)
++		return;
++
++	/* Disable any functions of higher priority than GPIO just in case */
++	while ((funcs = *prios)) {
++		if (aspeed_gpio_in_exprs(funcs))
++			break;
++
++		ret = aspeed_disable_sig(&pdata->pinmux, funcs);
++		if (ret)
++			return;
++
++		prios++;
++	}
++
++	if (!funcs) {
++		char *signals = get_defined_signals(pdesc);
++
++		pr_warn("No GPIO signal type found on pin %s (%d). Found: %s\n",
++			pdesc->name, offset, signals);
++		kfree(signals);
++
++		return;
++	}
++
++	/*
++	 * Pass-through should be one priority higher than the GPIO function,
++	 * so decrement our prios and enable that function
++	 */
++	prios--;
++	funcs = *prios;
++	expr = *funcs;
++	aspeed_sig_expr_enable(&pdata->pinmux, expr);
++}
++
+ int aspeed_pinctrl_probe(struct platform_device *pdev,
+ 			 struct pinctrl_desc *pdesc,
+ 			 struct aspeed_pinctrl_data *pdata)
+diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed.h b/drivers/pinctrl/aspeed/pinctrl-aspeed.h
+index 0d7c35af11d0..b1f3dc6f1783 100644
+--- a/drivers/pinctrl/aspeed/pinctrl-aspeed.h
++++ b/drivers/pinctrl/aspeed/pinctrl-aspeed.h
+@@ -106,6 +106,9 @@ int aspeed_gpio_request_enable(struct pinctrl_dev *pctldev,
+ int aspeed_g7_gpio_request_enable(struct pinctrl_dev *pctldev,
+ 				  struct pinctrl_gpio_range *range,
+ 				  unsigned int offset);
++void aspeed_gpio_disable_free(struct pinctrl_dev *pctldev,
++		struct pinctrl_gpio_range *range,
++		unsigned int offset);
+ int aspeed_pinctrl_probe(struct platform_device *pdev,
+ 		struct pinctrl_desc *pdesc,
+ 		struct aspeed_pinctrl_data *pdata);
