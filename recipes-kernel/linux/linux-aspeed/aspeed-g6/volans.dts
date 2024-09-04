@@ -222,6 +222,9 @@
 
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_rgmii2_default>;
+
+	nvmem-cells = <&eth0_macaddress>;
+	nvmem-cell-names = "mac-address";
 };
 
 &mac2 {
@@ -242,6 +245,9 @@
 	use-ncsi;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_rmii4_default>;
+
+	nvmem-cells = <&eth1_macaddress>;
+	nvmem-cell-names = "mac-address";
 };
 
 &emmc_controller {
@@ -335,26 +341,10 @@
 
 &i2c7 {
 	status = "okay";
-
-	temp@2e {
-		compatible = "adi,adt7490";
-		reg = <0x2e>;
-	};
-
-	eeprom@50 {
-		compatible = "atmel,24c08";
-		reg = <0x50>;
-		pagesize = <16>;
-	};
 };
 
 &i2c8 {
 	status = "okay";
-
-	lm75@4d {
-		compatible = "national,lm75";
-		reg = <0x4d>;
-	};
 };
 
 &i2c9 {
@@ -371,6 +361,26 @@
 
 &i2c14 {
 	status = "okay";
+	eeprom@50 {
+		label = "eeprom";
+		compatible = "st,24c128", "atmel,24c128";
+		reg = <0x50>;
+		pagesize = <16>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		#nvmem-cell-cells = <2>;
+		nvmem-layout {
+			compatible = "fixed-layout";
+
+			eth0_macaddress: macaddress@c9 {
+				reg = <0xc9 6>;
+			};
+
+			eth1_macaddress: macaddress@e3 {
+				reg = <0xe3 6>;
+			};
+		};
+	};
 };
 
 &i2c15 {
