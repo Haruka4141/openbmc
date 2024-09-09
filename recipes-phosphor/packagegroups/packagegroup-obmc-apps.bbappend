@@ -1,4 +1,6 @@
 RDEPENDS:${PN}-extras:append = " webui-vue \
                                  ipmitool \
                                  htop \
-                                 phosphor-gpio-monitor-monitor"
+                                 phosphor-gpio-monitor-monitor \
+                                 entity-manager \
+                                 dbus-sensors"

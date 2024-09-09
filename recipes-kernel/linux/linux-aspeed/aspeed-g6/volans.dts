@@ -136,6 +136,13 @@
 		};
 	};
 
+	iio-hwmon {
+		compatible = "iio-hwmon";
+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+					<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
+					<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
+					<&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
+	};
 };
 
 &pwm_tach {
@@ -462,7 +469,7 @@
 		/*M0 - M7*/     "", "", "", "", "", "", "", "",
 		/*N0 - N7*/     "", "", "", "", "", "", "", "",
 		/*O0 - O7*/     "", "", "", "", "", "", "", "",
-		/*P0 - P7*/     "POWER_BUTTON", "POWER_OUT", "RESET_BUTTON", "RESET_OUT", "", "", "", "",
+		/*P0 - P7*/     "POWER_BUTTON", "POWER_OUT", "RESET_BUTTON", "RESET_OUT", "", "", "BAT_CTRL", "",
 		/*Q0 - Q7*/     "", "", "", "", "", "", "", "",
 		/*R0 - R7*/     "POST_COMPLETE", "", "", "", "", "", "", "",	// POST_COMPLETE is dummy
 		/*S0 - S7*/     "", "", "", "", "", "", "", "",
@@ -480,4 +487,38 @@
 	/*AA0 - AA7*/   "PS_PWROK", "", "", "", "", "", "", "",
 	/*AB0 - AB7*/   "", "", "", "", "", "", "", "",
 	/*AC0 - AC7*/   "", "", "", "", "", "", "", "";
+};
+
+&adc0 {
+	status = "okay";
+
+	aspeed,int-vref-microvolt = <2500000>;
+
+	/*If you want to set external reference voltage(i.e. not 1.2V or 2.5V).
+		You should add vref-supply property as below and set the microvolt
+		value at vdd_adc_vref node.*/
+	//vref-supply = <&vdd_adc_vref>;
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+				&pinctrl_adc2_default &pinctrl_adc3_default
+				&pinctrl_adc4_default &pinctrl_adc5_default
+				&pinctrl_adc6_default &pinctrl_adc7_default>;
+};
+
+&adc1 {
+	status = "okay";
+
+	aspeed,int-vref-microvolt = <2500000>;
+
+	/*If you want to set external reference voltage(i.e. not 1.2V or 2.5V).
+		You should add vref-supply property as below and set the microvolt
+		value at vdd_adc_vref node.*/
+	//vref-supply = <&vdd_adc_vref>;
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
+				&pinctrl_adc10_default &pinctrl_adc11_default
+				&pinctrl_adc12_default &pinctrl_adc13_default
+				&pinctrl_adc14_default &pinctrl_adc15_default>;
 };
