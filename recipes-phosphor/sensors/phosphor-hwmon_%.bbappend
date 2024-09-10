@@ -1,6 +1,0 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-CHIPS = "pwm-tach-controller@1e610000"
-ENVS = "obmc/hwmon/{0}"
-ITEMSFMT = "ahb/apb/{0}.conf"
-ITEMS = "${@compose_list(d, 'ITEMSFMT', 'CHIPS')}"
-SYSTEMD_ENVIRONMENT_FILE:${PN}:append = " ${@compose_list(d, 'ENVS', 'ITEMS')}"

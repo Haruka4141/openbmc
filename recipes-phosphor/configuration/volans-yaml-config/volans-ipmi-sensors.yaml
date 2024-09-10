@@ -2,7 +2,7 @@
     entityID: 0x1
     entityInstance: 1
     sensorType: 0x04
-    path: /xyz/openbmc_project/sensors/fan_tach/fan1
+    path: /xyz/openbmc_project/sensors/fan_tach/FAN1
     sensorReadingType: 0x01
     multiplierM: 100
     offsetB: 0
@@ -23,7 +23,7 @@
     entityID: 0x1
     entityInstance: 2
     sensorType: 0x04
-    path: /xyz/openbmc_project/sensors/fan_tach/fan2
+    path: /xyz/openbmc_project/sensors/fan_tach/FAN2
     sensorReadingType: 0x01
     multiplierM: 100
     offsetB: 0
@@ -44,7 +44,7 @@
     entityID: 0x1
     entityInstance: 3
     sensorType: 0x04
-    path: /xyz/openbmc_project/sensors/fan_tach/fan3
+    path: /xyz/openbmc_project/sensors/fan_tach/FAN3
     sensorReadingType: 0x01
     multiplierM: 100
     offsetB: 0
@@ -65,7 +65,7 @@
     entityID: 0x1
     entityInstance: 4
     sensorType: 0x04
-    path: /xyz/openbmc_project/sensors/fan_tach/fan4
+    path: /xyz/openbmc_project/sensors/fan_tach/FAN4
     sensorReadingType: 0x01
     multiplierM: 100
     offsetB: 0
@@ -86,7 +86,7 @@
     entityID: 0x1
     entityInstance: 5
     sensorType: 0x04
-    path: /xyz/openbmc_project/sensors/fan_tach/fan5
+    path: /xyz/openbmc_project/sensors/fan_tach/FAN5
     sensorReadingType: 0x01
     multiplierM: 100
     offsetB: 0
