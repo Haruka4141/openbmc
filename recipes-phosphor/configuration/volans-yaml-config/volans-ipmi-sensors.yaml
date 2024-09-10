@@ -102,3 +102,355 @@
                 Offsets:
                     0xFF:
                         type: double
+
+0x60:
+    entityID: 0x3
+    entityInstance: 1
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P3V3_VCC_AUX_P0
+    sensorReadingType: 0x01
+    multiplierM: 2
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x61:
+    entityID: 0x3
+    entityInstance: 2
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVCCFA_EHV_P0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x62:
+    entityID: 0x3
+    entityInstance: 3
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVNN_MAIN_P0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x63:
+    entityID: 0x3
+    entityInstance: 4
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVCCFA_EHV_FIVR
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x64:
+    entityID: 0x3
+    entityInstance: 5
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P12V_PSU
+    sensorReadingType: 0x01
+    multiplierM: 6
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x65:
+    entityID: 0x3
+    entityInstance: 6
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P5V_PSU
+    sensorReadingType: 0x01
+    multiplierM: 5
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x66:
+    entityID: 0x3
+    entityInstance: 7
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P3V3
+    sensorReadingType: 0x01
+    multiplierM: 2
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x67:
+    entityID: 0x3
+    entityInstance: 8
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVCCD_HV0_P0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x68:
+    entityID: 0x3
+    entityInstance: 9
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVCCIN_P0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x69:
+    entityID: 0x3
+    entityInstance: 10
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVCCD_HV1_P0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x6A:
+    entityID: 0x3
+    entityInstance: 11
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P2V5_SWITCH
+    sensorReadingType: 0x01
+    multiplierM: 5
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x6B:
+    entityID: 0x3
+    entityInstance: 12
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/PVCCINF_P0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x6C:
+    entityID: 0x3
+    entityInstance: 13
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P1V05_SWITCH
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x6D:
+    entityID: 0x3
+    entityInstance: 14
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P1V05_USB
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x6E:
+    entityID: 0x3
+    entityInstance: 15
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/P1V1_USB
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x6F:
+    entityID: 0x3
+    entityInstance: 16
+    sensorType: 0x02
+    path: /xyz/openbmc_project/sensors/voltage/BAT_PWR
+    sensorReadingType: 0x01
+    multiplierM: 2
+    offsetB: 0
+    bExp: 0
+    rExp: -2
+    scale: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.Volts
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
