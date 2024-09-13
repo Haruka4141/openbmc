@@ -71,6 +71,46 @@
             "Type": "AspeedFan"
         },
         {
+            "Address": "0x49",
+            "Bus": 14,
+            "Name": "TEMP_FRONT_SIDE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 2,
+                    "Value": 50
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 6,
+            "Name": "TEMP_REAR_SIDE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 2,
+                    "Value": 50
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
             "Index": 0,
             "Name": "P3V3_VCC_AUX_P0",
             "PowerState": "Always",

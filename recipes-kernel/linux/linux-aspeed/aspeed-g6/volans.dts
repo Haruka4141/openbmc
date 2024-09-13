@@ -344,6 +344,10 @@
 
 &i2c6 {
 	status = "okay";
+	tmp75@48 {
+		compatible = "ti,tmp75";
+		reg = <0x48>;
+	};
 };
 
 &i2c7 {
@@ -387,6 +391,10 @@
 				reg = <0xe3 6>;
 			};
 		};
+	};
+	tmp75@49 {
+		compatible = "ti,tmp75";
+		reg = <0x49>;
 	};
 };
 
