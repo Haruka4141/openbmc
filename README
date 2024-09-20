@@ -5,16 +5,6 @@ Please see the corresponding sections below for details.
 Dependencies
 ============
 
-  URI: <first dependency>
-  branch: <branch name>
-
-  URI: <second dependency>
-  branch: <branch name>
-
-  .
-  .
-  .
-
 Patches
 =======
 
@@ -23,7 +13,7 @@ and cc: the maintainer:
 
 Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
 
-Table of Contents
+Usage
 =================
 
   I. Adding the meta-aic layer to your build
@@ -32,8 +22,10 @@ Table of Contents
 
 I. Adding the meta-aic layer to your build
 =================================================
-
-Run 'bitbake-layers add-layer meta-aic'
+cd openbmc  
+git checkout [2.17.0-dev](https://github.com/openbmc/openbmc/releases/tag/2.17.0-dev)  
+git clone http://192.168.22.127:3000/BMC_TEAM/aic_openbmc.git meta-aic  
+. setup volans
 
 II. Misc
 ========
