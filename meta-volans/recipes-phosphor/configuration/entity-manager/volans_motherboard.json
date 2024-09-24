@@ -526,6 +526,29 @@
             {
                 "Name": "Volans Upstream Port",
                 "Type": "Volans Upstream Port"
+            },
+            {
+                "Address": "0x30",
+                "Bus": 0,
+                "CpuID": 0,
+                "Name": "CPU 0",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "DIMM",
+                        "Name": "upper non recoverable",
+                        "Severity": 2,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "DIMM",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 82
+                    }
+                ],
+                "Type": "XeonCPU"
             }
         ],
         "Name": "Volans Motherboard",
