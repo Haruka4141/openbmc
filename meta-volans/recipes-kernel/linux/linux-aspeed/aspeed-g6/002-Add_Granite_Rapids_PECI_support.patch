@@ -1,0 +1,54 @@
+diff --git a/drivers/hwmon/peci/cputemp.c b/drivers/hwmon/peci/cputemp.c
+index a812c15948d9..93065d51c671 100644
+--- a/drivers/hwmon/peci/cputemp.c
++++ b/drivers/hwmon/peci/cputemp.c
+@@ -364,6 +364,7 @@ static int init_core_mask(struct peci_cputemp *priv)
+ 	case INTEL_FAM6_ICELAKE_X:
+ 	case INTEL_FAM6_ICELAKE_D:
+ 	case INTEL_FAM6_SAPPHIRERAPIDS_X:
++	case INTEL_FAM6_GRANITERAPIDS_X:
+ 		ret = peci_ep_pci_local_read(peci_dev, 0, reg->bus, reg->dev,
+ 					     reg->func, reg->offset + 4, &data);
+ 		if (ret)
+@@ -591,6 +592,10 @@ static const struct auxiliary_device_id peci_cputemp_ids[] = {
+ 	{
+ 		.name = "peci_cpu.cputemp.spr",
+ 		.driver_data = (kernel_ulong_t)&cpu_spr,
++	},
++	{
++		.name = "peci_cpu.cputemp.gnr",
++		.driver_data = (kernel_ulong_t)&cpu_spr,
+ 	},
+ 	{ }
+ };
+diff --git a/drivers/peci/cpu.c b/drivers/peci/cpu.c
+index bd990acd92b8..13690a217905 100644
+--- a/drivers/peci/cpu.c
++++ b/drivers/peci/cpu.c
+@@ -328,6 +328,11 @@ static const struct peci_device_id peci_cpu_device_ids[] = {
+ 		.model	= INTEL_FAM6_SAPPHIRERAPIDS_X,
+ 		.data	= "spr",
+ 	},
++	{ /* Granite Rapids Xeon */
++		.family	= 6,
++		.model	= INTEL_FAM6_GRANITERAPIDS_X,
++		.data	= "gnr",
++	},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(peci, peci_cpu_device_ids);
+diff --git a/drivers/hwmon/peci/dimmtemp.c b/drivers/hwmon/peci/dimmtemp.c
+index 5ca4d04e4b14..91642c708ba9 100644
+--- a/drivers/hwmon/peci/dimmtemp.c
++++ b/drivers/hwmon/peci/dimmtemp.c
+@@ -651,6 +651,10 @@ static const struct auxiliary_device_id peci_dimmtemp_ids[] = {
+ 		.name = "peci_cpu.dimmtemp.spr",
+ 		.driver_data = (kernel_ulong_t)&dimm_spr,
+ 	},
++	{
++		.name = "peci_cpu.dimmtemp.gnr",
++		.driver_data = (kernel_ulong_t)&dimm_spr,
++	},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(auxiliary, peci_dimmtemp_ids);

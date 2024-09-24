@@ -4,6 +4,7 @@ AIC_KERNEL_DEVICETREE ?= "volans.dts"
 SRC_URI += "file://${AIC_KERNEL_DEVICETREE}"
 SRC_URI += "file://AIC_kernel.cfg"
 SRC_URI += "file://001-Enable_GPIO_pass_through.patch"
+SRC_URI += "file://002-Add_Granite_Rapids_PECI_support.patch"
 
 KSRC = "git://github.com/AspeedTech-BMC/linux;protocol=https;branch=${KBRANCH}"
 KBRANCH = "aspeed-master-v6.6"

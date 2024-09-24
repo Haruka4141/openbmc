@@ -538,3 +538,7 @@
 				&pinctrl_adc12_default &pinctrl_adc13_default
 				&pinctrl_adc14_default &pinctrl_adc15_default>;
 };
+
+&peci0 {
+	status = "okay";
+};
