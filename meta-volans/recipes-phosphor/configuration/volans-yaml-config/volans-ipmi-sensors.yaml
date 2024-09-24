@@ -102,6 +102,27 @@
                 Offsets:
                     0xFF:
                         type: double
+0x20:
+    entityID: 0x2
+    entityInstance: 0
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/Die_CPU0
+    sensorName: TEMP_CPU0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
 
 0x22:
     entityID: 0x2
@@ -129,6 +150,182 @@
     entityInstance: 2
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/TEMP_REAR_SIDE
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x30:
+    entityID: 0x2
+    entityInstance: 3
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_A1_CPU0
+    sensorName: TEMP_P0_DIMM_A0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x31:
+    entityID: 0x2
+    entityInstance: 4
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_B1_CPU0
+    sensorName: TEMP_P0_DIMM_B0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x32:
+    entityID: 0x2
+    entityInstance: 5
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_C1_CPU0
+    sensorName: TEMP_P0_DIMM_C0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x33:
+    entityID: 0x2
+    entityInstance: 6
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_D1_CPU0
+    sensorName: TEMP_P0_DIMM_D0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x34:
+    entityID: 0x2
+    entityInstance: 7
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_E1_CPU0
+    sensorName: TEMP_P0_DIMM_E0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x35:
+    entityID: 0x2
+    entityInstance: 8
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_F1_CPU0
+    sensorName: TEMP_P0_DIMM_F0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x36:
+    entityID: 0x2
+    entityInstance: 9
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_G1_CPU0
+    sensorName: TEMP_P0_DIMM_G0
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
+
+0x37:
+    entityID: 0x2
+    entityInstance: 10
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/DIMM_H1_CPU0
+    sensorName: TEMP_P0_DIMM_H0
     sensorReadingType: 0x01
     multiplierM: 1
     offsetB: 0
