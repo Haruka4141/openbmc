@@ -342,6 +342,26 @@
                     0xFF:
                         type: double
 
+0x50:
+    entityID: 0x2
+    entityInstance: 11
+    sensorType: 0x01
+    path: /xyz/openbmc_project/sensors/temperature/TEMP_P0_VR
+    sensorReadingType: 0x01
+    multiplierM: 1
+    offsetB: 0
+    bExp: 0
+    rExp: 0
+    unit: xyz.openbmc_project.Sensor.Value.Unit.DegreesC
+    serviceInterface: org.freedesktop.DBus.Properties
+    readingType: readingData
+    sensorNamePattern: nameLeaf
+    interfaces:
+        xyz.openbmc_project.Sensor.Value:
+            Value:
+                Offsets:
+                    0xFF:
+                        type: double
 0x60:
     entityID: 0x3
     entityInstance: 1
