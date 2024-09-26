@@ -340,6 +340,10 @@
 
 &i2c5 {
 	status = "okay";
+	CPU0_VR@70 {
+		compatible = "mps,mp2985";
+		reg = <0x70>;
+	};
 };
 
 &i2c6 {

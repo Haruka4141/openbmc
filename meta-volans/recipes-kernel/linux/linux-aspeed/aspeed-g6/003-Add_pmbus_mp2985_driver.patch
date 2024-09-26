@@ -1,0 +1,350 @@
+diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+index b78cedb133c8..1a8a9da67bf6 100644
+--- a/drivers/hwmon/pmbus/Makefile
++++ b/drivers/hwmon/pmbus/Makefile
+@@ -35,6 +35,7 @@ obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
+ obj-$(CONFIG_SENSORS_MP2856)	+= mp2856.o
+ obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+ obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
++obj-$(CONFIG_SENSORS_MP2975)	+= mp2985.o
+ obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+ obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+ obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
+diff --git a/drivers/hwmon/pmbus/mp2985.c b/drivers/hwmon/pmbus/mp2985.c
+new file mode 100644
+index 000000000000..25ee7226e19a
+--- /dev/null
++++ b/drivers/hwmon/pmbus/mp2985.c
+@@ -0,0 +1,332 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Hardware monitoring driver for MPS Multi-phase Digital VR Controllers
++ *
++ * Copyright (C) 2020 Nvidia Technologies Ltd.
++ */
++
++#include <linux/err.h>
++#include <linux/i2c.h>
++#include <linux/init.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include "pmbus.h"
++
++/* Vendor specific registers. */
++#define MP2975_MFR_APS_HYS_R2		0x0d
++#define MP2975_MFR_SLOPE_TRIM3		0x1d
++#define MP2975_MFR_VR_MULTI_CONFIG_R1	0x0d
++#define MP2975_MFR_VR_MULTI_CONFIG_R2	0x1d
++#define MP2975_MFR_APS_DECAY_ADV	0x56
++#define MP2975_MFR_DC_LOOP_CTRL		0x59
++#define MP2975_MFR_OCP_UCP_PHASE_SET	0x65
++#define MP2975_MFR_VR_CONFIG1		0x68
++#define MP2975_MFR_READ_CS1_2		0x82
++#define MP2975_MFR_READ_CS3_4		0x83
++#define MP2975_MFR_READ_CS5_6		0x84
++#define MP2975_MFR_READ_CS7_8		0x85
++#define MP2975_MFR_READ_CS9_10		0x86
++#define MP2975_MFR_READ_CS11_12		0x87
++#define MP2975_MFR_READ_IOUT_PK		0x90
++#define MP2975_MFR_READ_POUT_PK		0x91
++#define MP2975_MFR_READ_VREF_R1		0xa1
++#define MP2975_MFR_READ_VREF_R2		0xa3
++#define MP2975_MFR_OVP_TH_SET		0xe5
++#define MP2975_MFR_UVP_SET		0xe6
++
++#define MP2973_MFR_RESO_SET		0xc7
++
++#define MP2975_VOUT_FORMAT		BIT(15)
++#define MP2975_VID_STEP_SEL_R1		BIT(4)
++#define MP2975_IMVP9_EN_R1		BIT(13)
++#define MP2975_VID_STEP_SEL_R2		BIT(3)
++#define MP2975_IMVP9_EN_R2		BIT(12)
++#define MP2975_PRT_THRES_DIV_OV_EN	BIT(14)
++#define MP2975_DRMOS_KCS		GENMASK(13, 12)
++#define MP2975_PROT_DEV_OV_OFF		10
++#define MP2975_PROT_DEV_OV_ON		5
++#define MP2975_SENSE_AMPL		BIT(11)
++#define MP2975_SENSE_AMPL_UNIT		1
++#define MP2975_SENSE_AMPL_HALF		2
++#define MP2975_VIN_UV_LIMIT_UNIT	8
++
++#define MP2973_VOUT_FORMAT_R1		GENMASK(7, 6)
++#define MP2973_VOUT_FORMAT_R2		GENMASK(4, 3)
++#define MP2973_VOUT_FORMAT_DIRECT_R1	BIT(7)
++#define MP2973_VOUT_FORMAT_LINEAR_R1	BIT(6)
++#define MP2973_VOUT_FORMAT_DIRECT_R2	BIT(4)
++#define MP2973_VOUT_FORMAT_LINEAR_R2	BIT(3)
++
++#define MP2973_MFR_VR_MULTI_CONFIG_R1	0x0d
++#define MP2973_MFR_VR_MULTI_CONFIG_R2	0x1d
++#define MP2973_VID_STEP_SEL_R1		BIT(4)
++#define MP2973_IMVP9_EN_R1		BIT(14)
++#define MP2973_VID_STEP_SEL_R2		BIT(3)
++#define MP2973_IMVP9_EN_R2		BIT(13)
++
++#define MP2973_MFR_OCP_TOTAL_SET	0x5f
++#define MP2973_OCP_TOTAL_CUR_MASK	GENMASK(6, 0)
++#define MP2973_MFR_OCP_LEVEL_RES	BIT(15)
++
++#define MP2973_MFR_READ_IOUT_PK		0x90
++#define MP2973_MFR_READ_POUT_PK		0x91
++
++#define MP2975_MAX_PHASE_RAIL1	8
++#define MP2975_MAX_PHASE_RAIL2	4
++
++#define MP2973_MAX_PHASE_RAIL1	14
++#define MP2973_MAX_PHASE_RAIL2	6
++
++#define MP2971_MAX_PHASE_RAIL1	8
++#define MP2971_MAX_PHASE_RAIL2	3
++
++#define MP2975_PAGE_NUM		2
++
++#define MP2975_RAIL2_FUNC	(PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT | \
++				 PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT | \
++				 PMBUS_HAVE_POUT | PMBUS_PHASE_VIRTUAL)
++
++enum chips {
++	mp2971, mp2973, mp2975
++};
++
++struct mp2975_data {
++	struct pmbus_driver_info info;
++	enum chips chip_id;
++	int vout_scale;
++	int max_phases[MP2975_PAGE_NUM];
++	int vid_step[MP2975_PAGE_NUM];
++	int vref[MP2975_PAGE_NUM];
++	int vref_off[MP2975_PAGE_NUM];
++	int vout_max[MP2975_PAGE_NUM];
++	int vout_ov_fixed[MP2975_PAGE_NUM];
++	int curr_sense_gain[MP2975_PAGE_NUM];
++};
++
++static const struct i2c_device_id mp2975_id[] = {
++	{"mp2971", mp2971},
++	{"mp2973", mp2973},
++	{"mp2975", mp2975},
++	{}
++};
++
++MODULE_DEVICE_TABLE(i2c, mp2975_id);
++
++#define to_mp2975_data(x)  container_of(x, struct mp2975_data, info)
++
++static int
++mp2975_read_word_helper(struct i2c_client *client, int page, int phase, u8 reg,
++			u16 mask)
++{
++	int ret = pmbus_read_word_data(client, page, phase, reg);
++
++	return (ret > 0) ? ret & mask : ret;
++}
++
++static int
++mp2975_vid2direct(int vrf, int val)
++{
++	switch (vrf) {
++	case vr12:
++		if (val >= 0x01)
++			return 250 + (val - 1) * 5;
++		break;
++	case vr13:
++		if (val >= 0x01)
++			return 500 + (val - 1) * 10;
++		break;
++	case imvp9:
++		if (val >= 0x01)
++			return 200 + (val - 1) * 10;
++		break;
++	default:
++		return -EINVAL;
++	}
++	return 0;
++}
++
++#define MAX_LIN_MANTISSA	(1023 * 1000)
++#define MIN_LIN_MANTISSA	(511 * 1000)
++
++/* Converts a milli-unit DIRECT value to LINEAR11 format */
++static u16 mp2975_data2reg_linear11(s64 val)
++{
++	s16 exponent = 0, mantissa;
++	bool negative = false;
++
++	/* simple case */
++	if (val == 0)
++		return 0;
++
++	/* Reduce large mantissa until it fits into 10 bit */
++	while (val >= MAX_LIN_MANTISSA && exponent < 15) {
++		exponent++;
++		val >>= 1;
++	}
++	/* Increase small mantissa to improve precision */
++	while (val < MIN_LIN_MANTISSA && exponent > -15) {
++		exponent--;
++		val <<= 1;
++	}
++
++	/* Convert mantissa from milli-units to units */
++	mantissa = clamp_val(DIV_ROUND_CLOSEST_ULL(val, 1000), 0, 0x3ff);
++
++	/* restore sign */
++	if (negative)
++		mantissa = -mantissa;
++
++	/* Convert to 5 bit exponent, 11 bit mantissa */
++	return (mantissa & 0x7ff) | ((exponent << 11) & 0xf800);
++}
++
++static int mp2973_read_word_data(struct i2c_client *client, int page,
++				 int phase, int reg)
++{
++	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
++	struct mp2975_data *data = to_mp2975_data(info);
++	int ret;
++
++	switch (reg) {
++	case PMBUS_STATUS_WORD:
++		/* MP2973 & MP2971 return PGOOD instead of PB_STATUS_POWER_GOOD_N. */
++		ret = pmbus_read_word_data(client, page, phase, reg);
++		ret ^= PB_STATUS_POWER_GOOD_N;
++		break;
++	case PMBUS_OT_FAULT_LIMIT:
++		ret = mp2975_read_word_helper(client, page, phase, reg,
++					      GENMASK(7, 0));
++		break;
++	case PMBUS_VIN_OV_FAULT_LIMIT:
++		ret = mp2975_read_word_helper(client, page, phase, reg,
++					      GENMASK(7, 0));
++		if (ret < 0)
++			return ret;
++
++		ret = DIV_ROUND_CLOSEST(ret, MP2975_VIN_UV_LIMIT_UNIT);
++		break;
++	case PMBUS_VOUT_OV_FAULT_LIMIT:
++		/*
++		 * MP2971 and mp2973 only supports tracking (ovp1) mode.
++		 */
++		ret = mp2975_read_word_helper(client, page, phase,
++					      MP2975_MFR_OVP_TH_SET,
++					      GENMASK(2, 0));
++		if (ret < 0)
++			return ret;
++
++		ret = data->vout_max[page] + 50 * (ret + 1);
++		break;
++	case PMBUS_VOUT_UV_FAULT_LIMIT:
++		ret = mp2975_read_word_helper(client, page, phase, reg,
++					      GENMASK(8, 0));
++		if (ret < 0)
++			return ret;
++		ret = mp2975_vid2direct(info->vrm_version[page], ret);
++		break;
++	case PMBUS_VIRT_READ_POUT_MAX:
++		ret = pmbus_read_word_data(client, page, phase,
++					   MP2973_MFR_READ_POUT_PK);
++		break;
++	case PMBUS_VIRT_READ_IOUT_MAX:
++		ret = pmbus_read_word_data(client, page, phase,
++					   MP2973_MFR_READ_IOUT_PK);
++		break;
++	case PMBUS_IOUT_OC_FAULT_LIMIT:
++		ret = mp2975_read_word_helper(client, page, phase,
++					      MP2973_MFR_OCP_TOTAL_SET,
++					      GENMASK(15, 0));
++		if (ret < 0)
++			return ret;
++
++		if (ret & MP2973_MFR_OCP_LEVEL_RES)
++			ret = 2 * (ret & MP2973_OCP_TOTAL_CUR_MASK);
++		else
++			ret = ret & MP2973_OCP_TOTAL_CUR_MASK;
++
++		ret = mp2975_data2reg_linear11(ret * info->phases[page] * 1000);
++		break;
++	case PMBUS_UT_WARN_LIMIT:
++	case PMBUS_UT_FAULT_LIMIT:
++	case PMBUS_VIN_UV_WARN_LIMIT:
++	case PMBUS_VIN_UV_FAULT_LIMIT:
++	case PMBUS_VOUT_UV_WARN_LIMIT:
++	case PMBUS_VOUT_OV_WARN_LIMIT:
++	case PMBUS_VIN_OV_WARN_LIMIT:
++	case PMBUS_IIN_OC_FAULT_LIMIT:
++	case PMBUS_IOUT_OC_LV_FAULT_LIMIT:
++	case PMBUS_IOUT_OC_WARN_LIMIT:
++	case PMBUS_IOUT_UC_FAULT_LIMIT:
++	case PMBUS_POUT_OP_FAULT_LIMIT:
++	case PMBUS_POUT_OP_WARN_LIMIT:
++	case PMBUS_PIN_OP_WARN_LIMIT:
++		return -ENXIO;
++	default:
++		return -ENODATA;
++	}
++
++	return ret;
++}
++
++static struct pmbus_driver_info mp2973_info = {
++	.pages = 1,
++	.format[PSC_VOLTAGE_IN] = linear,
++	.format[PSC_VOLTAGE_OUT] = direct,
++	.format[PSC_TEMPERATURE] = linear,
++	.format[PSC_CURRENT_IN] = linear,
++	.format[PSC_CURRENT_OUT] = linear,
++	.format[PSC_POWER] = linear,
++	.m[PSC_VOLTAGE_OUT] = 1,
++	.R[PSC_VOLTAGE_OUT] = 3,
++	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
++		PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
++		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_POUT |
++		PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
++	.read_word_data = mp2973_read_word_data,
++};
++
++static int mp2975_probe(struct i2c_client *client)
++{
++	struct pmbus_driver_info *info;
++	struct mp2975_data *data;
++	int ret;
++
++	data = devm_kzalloc(&client->dev, sizeof(struct mp2975_data),
++			    GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	if (client->dev.of_node)
++		data->chip_id = (enum chips)(unsigned long)of_device_get_match_data(&client->dev);
++	else
++		data->chip_id = i2c_match_id(mp2975_id, client)->driver_data;
++
++	memcpy(&data->info, &mp2973_info, sizeof(*info));
++
++	info = &data->info;
++
++	return pmbus_do_probe(client, info);
++}
++
++static const struct of_device_id __maybe_unused mp2975_of_match[] = {
++	{.compatible = "mps,mp2985",},
++	{}
++};
++MODULE_DEVICE_TABLE(of, mp2975_of_match);
++
++static struct i2c_driver mp2975_driver = {
++	.driver = {
++		.name = "mp2985",
++		.of_match_table = of_match_ptr(mp2975_of_match),
++	},
++	.probe = mp2975_probe,
++	.id_table = mp2975_id,
++};
++
++module_i2c_driver(mp2975_driver);
++
++MODULE_AUTHOR("Vadim Pasternak <vadimp@nvidia.com>");
++MODULE_DESCRIPTION("PMBus driver for MPS MP2975 device");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS(PMBUS);
