@@ -2,24 +2,13 @@ diff --git a/arch/arm/mach-aspeed/ast2600/board_common.c b/arch/arm/mach-aspeed/
 index 70d2a97b5d..4411188d87 100644
 --- a/arch/arm/mach-aspeed/ast2600/board_common.c
 +++ b/arch/arm/mach-aspeed/ast2600/board_common.c
-@@ -71,6 +71,20 @@ __weak int board_init(void)
+@@ -71,6 +71,9 @@ __weak int board_init(void)
  			writel(0x1, 0x1e600000);
  		}
  	}
 +	writel(0x0, 0x1E620064);	// Disable FMC_WDT2
-+	//GPIO M/N/O/P Direction Register, set GPIOP3 to output pin
-+   *(volatile u32 *)(0x1e780000 + 0x7C) |= (0x01 << 27);
 +   //Multi-function Pin Control #20, enable GPIOP2 Passthrough GPIOP3 function pin
 +   *(volatile u32 *)(0x1e6e2000 + 0x4BC) |= 0x3f000000;
-+   int reg;
-+   //Set GPIOG3 to output
-+   reg = *(volatile ulong *) (0x1e780000 + 0x24);
-+   reg = reg | 0x80000;
-+   *(volatile ulong *) (0x1e780000 + 0x24) = reg;
-+   //Set GPIOG3 to low
-+   reg = *(volatile ulong *) (0x1e780000 + 0x20);
-+   reg = reg & 0xFFF7FFFF;
-+   *(volatile ulong *) (0x1e780000 + 0x20) = reg;
  
  	gd->bd->bi_boot_params = CONFIG_SYS_SDRAM_BASE + 0x100;
  
