@@ -577,6 +577,12 @@
                     }
                 ],
                 "Type": "XeonCPU"
+            },
+            {
+                "Class": "Aspeed2600_Hwmon",
+                "Name": "Chassis_Intrusion_Status",
+                "Rearm": "Manual",
+                "Type": "ChassisIntrusionSensor"
             }
         ],
         "Name": "Volans Motherboard",

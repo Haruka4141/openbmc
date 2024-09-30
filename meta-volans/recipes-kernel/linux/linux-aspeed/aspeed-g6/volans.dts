@@ -472,7 +472,8 @@
 	/* Enable GPIOP0 and GPIOP2 pass-through by default */
 	pinctrl-names = "pass-through";
 	pinctrl-0 = <&pinctrl_thru0_default
-				 &pinctrl_thru1_default>;
+				 &pinctrl_thru1_default
+				 &pinctrl_gpiov6_unbiased_default>;	// Only for EVT MB: Disable internal pull down
 	gpio-line-names =
 		/*A0 - A7*/     "", "", "", "", "", "", "", "",
 		/*B0 - B7*/     "", "", "", "", "", "", "", "",
@@ -545,4 +546,15 @@
 
 &peci0 {
 	status = "okay";
+};
+
+&chassis {
+	status = "okay";
+};
+
+&pinctrl {
+	pinctrl_gpiov6_unbiased_default: gpiov6 {
+		pins = "AD15";
+		bias-disable;
+	};
 };
