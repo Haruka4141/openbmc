@@ -755,3 +755,21 @@
                 Offsets:
                     0xFF:
                         type: double
+
+0xaa:
+    entityID: 0x7
+    entityInstance: 19
+    sensorType: 0x05
+    path: /xyz/openbmc_project/Chassis/Intrusion
+    sensorReadingType: 0x6f
+    serviceInterface: org.freedesktop.DBus.Properties
+    sensorNamePattern: nameLeaf
+    readingType: assertion
+    sensorName: Chassisintrusion 
+    interfaces:
+      xyz.openbmc_project.Chassis.Intrusion:
+        Status:
+          Offsets:
+            0:
+              set: xyz.openbmc_project.Chassis.Intrusion.Status.HardwareIntrusion
+              type: string
