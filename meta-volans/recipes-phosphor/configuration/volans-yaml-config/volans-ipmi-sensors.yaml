@@ -1,6 +1,6 @@
 0x10:
-    entityID: 0x1
-    entityInstance: 1
+    entityID: 0x1D
+    entityInstance: 0
     sensorType: 0x04
     path: /xyz/openbmc_project/sensors/fan_tach/FAN1
     sensorReadingType: 0x01
@@ -20,8 +20,8 @@
                         type: double
 
 0x11:
-    entityID: 0x1
-    entityInstance: 2
+    entityID: 0x1D
+    entityInstance: 1
     sensorType: 0x04
     path: /xyz/openbmc_project/sensors/fan_tach/FAN2
     sensorReadingType: 0x01
@@ -41,8 +41,8 @@
                         type: double
 
 0x12:
-    entityID: 0x1
-    entityInstance: 3
+    entityID: 0x1D
+    entityInstance: 2
     sensorType: 0x04
     path: /xyz/openbmc_project/sensors/fan_tach/FAN3
     sensorReadingType: 0x01
@@ -62,8 +62,8 @@
                         type: double
 
 0x13:
-    entityID: 0x1
-    entityInstance: 4
+    entityID: 0x1D
+    entityInstance: 3
     sensorType: 0x04
     path: /xyz/openbmc_project/sensors/fan_tach/FAN4
     sensorReadingType: 0x01
@@ -83,8 +83,8 @@
                         type: double
 
 0x14:
-    entityID: 0x1
-    entityInstance: 5
+    entityID: 0x1D
+    entityInstance: 4
     sensorType: 0x04
     path: /xyz/openbmc_project/sensors/fan_tach/FAN5
     sensorReadingType: 0x01
@@ -103,7 +103,7 @@
                     0xFF:
                         type: double
 0x20:
-    entityID: 0x2
+    entityID: 0x3
     entityInstance: 0
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/Die_CPU0
@@ -125,8 +125,8 @@
                         type: double
 
 0x22:
-    entityID: 0x2
-    entityInstance: 1
+    entityID: 0x7
+    entityInstance: 0
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/TEMP_FRONT_SIDE
     sensorReadingType: 0x01
@@ -146,8 +146,8 @@
                         type: double
 
 0x25:
-    entityID: 0x2
-    entityInstance: 2
+    entityID: 0x7
+    entityInstance: 1
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/TEMP_REAR_SIDE
     sensorReadingType: 0x01
@@ -167,8 +167,8 @@
                         type: double
 
 0x30:
-    entityID: 0x2
-    entityInstance: 3
+    entityID: 0x20
+    entityInstance: 0
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_A1_CPU0
     sensorName: TEMP_P0_DIMM_A0
@@ -189,8 +189,8 @@
                         type: double
 
 0x31:
-    entityID: 0x2
-    entityInstance: 4
+    entityID: 0x20
+    entityInstance: 1
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_B1_CPU0
     sensorName: TEMP_P0_DIMM_B0
@@ -211,8 +211,8 @@
                         type: double
 
 0x32:
-    entityID: 0x2
-    entityInstance: 5
+    entityID: 0x20
+    entityInstance: 2
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_C1_CPU0
     sensorName: TEMP_P0_DIMM_C0
@@ -233,8 +233,8 @@
                         type: double
 
 0x33:
-    entityID: 0x2
-    entityInstance: 6
+    entityID: 0x20
+    entityInstance: 3
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_D1_CPU0
     sensorName: TEMP_P0_DIMM_D0
@@ -255,8 +255,8 @@
                         type: double
 
 0x34:
-    entityID: 0x2
-    entityInstance: 7
+    entityID: 0x20
+    entityInstance: 4
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_E1_CPU0
     sensorName: TEMP_P0_DIMM_E0
@@ -277,8 +277,8 @@
                         type: double
 
 0x35:
-    entityID: 0x2
-    entityInstance: 8
+    entityID: 0x20
+    entityInstance: 5
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_F1_CPU0
     sensorName: TEMP_P0_DIMM_F0
@@ -299,8 +299,8 @@
                         type: double
 
 0x36:
-    entityID: 0x2
-    entityInstance: 9
+    entityID: 0x20
+    entityInstance: 6
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_G1_CPU0
     sensorName: TEMP_P0_DIMM_G0
@@ -321,8 +321,8 @@
                         type: double
 
 0x37:
-    entityID: 0x2
-    entityInstance: 10
+    entityID: 0x20
+    entityInstance: 7
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/DIMM_H1_CPU0
     sensorName: TEMP_P0_DIMM_H0
@@ -343,8 +343,8 @@
                         type: double
 
 0x50:
-    entityID: 0x2
-    entityInstance: 11
+    entityID: 0x7
+    entityInstance: 2
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/TEMP_P0_VR
     sensorReadingType: 0x01
@@ -363,8 +363,8 @@
                     0xFF:
                         type: double
 0x60:
-    entityID: 0x3
-    entityInstance: 1
+    entityID: 0x7
+    entityInstance: 3
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P3V3_VCC_AUX_P0
     sensorReadingType: 0x01
@@ -385,8 +385,8 @@
                         type: double
 
 0x61:
-    entityID: 0x3
-    entityInstance: 2
+    entityID: 0x7
+    entityInstance: 4
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVCCFA_EHV_P0
     sensorReadingType: 0x01
@@ -407,8 +407,8 @@
                         type: double
 
 0x62:
-    entityID: 0x3
-    entityInstance: 3
+    entityID: 0x7
+    entityInstance: 5
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVNN_MAIN_P0
     sensorReadingType: 0x01
@@ -429,8 +429,8 @@
                         type: double
 
 0x63:
-    entityID: 0x3
-    entityInstance: 4
+    entityID: 0x7
+    entityInstance: 6
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVCCFA_EHV_FIVR
     sensorReadingType: 0x01
@@ -451,8 +451,8 @@
                         type: double
 
 0x64:
-    entityID: 0x3
-    entityInstance: 5
+    entityID: 0x7
+    entityInstance: 7
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P12V_PSU
     sensorReadingType: 0x01
@@ -473,8 +473,8 @@
                         type: double
 
 0x65:
-    entityID: 0x3
-    entityInstance: 6
+    entityID: 0x7
+    entityInstance: 8
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P5V_PSU
     sensorReadingType: 0x01
@@ -495,8 +495,8 @@
                         type: double
 
 0x66:
-    entityID: 0x3
-    entityInstance: 7
+    entityID: 0x7
+    entityInstance: 9
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P3V3
     sensorReadingType: 0x01
@@ -517,8 +517,8 @@
                         type: double
 
 0x67:
-    entityID: 0x3
-    entityInstance: 8
+    entityID: 0x7
+    entityInstance: 10
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVCCD_HV0_P0
     sensorReadingType: 0x01
@@ -539,8 +539,8 @@
                         type: double
 
 0x68:
-    entityID: 0x3
-    entityInstance: 9
+    entityID: 0x7
+    entityInstance: 11
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVCCIN_P0
     sensorReadingType: 0x01
@@ -561,8 +561,8 @@
                         type: double
 
 0x69:
-    entityID: 0x3
-    entityInstance: 10
+    entityID: 0x7
+    entityInstance: 12
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVCCD_HV1_P0
     sensorReadingType: 0x01
@@ -583,8 +583,8 @@
                         type: double
 
 0x6A:
-    entityID: 0x3
-    entityInstance: 11
+    entityID: 0x7
+    entityInstance: 13
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P2V5_SWITCH
     sensorReadingType: 0x01
@@ -605,8 +605,8 @@
                         type: double
 
 0x6B:
-    entityID: 0x3
-    entityInstance: 12
+    entityID: 0x7
+    entityInstance: 14
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/PVCCINF_P0
     sensorReadingType: 0x01
@@ -627,8 +627,8 @@
                         type: double
 
 0x6C:
-    entityID: 0x3
-    entityInstance: 13
+    entityID: 0x7
+    entityInstance: 15
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P1V05_SWITCH
     sensorReadingType: 0x01
@@ -649,8 +649,8 @@
                         type: double
 
 0x6D:
-    entityID: 0x3
-    entityInstance: 14
+    entityID: 0x7
+    entityInstance: 16
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P1V05_USB
     sensorReadingType: 0x01
@@ -671,8 +671,8 @@
                         type: double
 
 0x6E:
-    entityID: 0x3
-    entityInstance: 15
+    entityID: 0x7
+    entityInstance: 17
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/P1V1_USB
     sensorReadingType: 0x01
@@ -693,8 +693,8 @@
                         type: double
 
 0x6F:
-    entityID: 0x3
-    entityInstance: 16
+    entityID: 0x7
+    entityInstance: 18
     sensorType: 0x02
     path: /xyz/openbmc_project/sensors/voltage/BAT_PWR
     sensorReadingType: 0x01
@@ -715,8 +715,8 @@
                         type: double
 
 0xe6:
-    entityID: 0x2
-    entityInstance: 11
+    entityID: 0xA
+    entityInstance: 0
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/PSU0_TEMP
     sensorReadingType: 0x01
@@ -736,8 +736,8 @@
                         type: double
 
 0xe7:
-    entityID: 0x2
-    entityInstance: 12
+    entityID: 0xA
+    entityInstance: 1
     sensorType: 0x01
     path: /xyz/openbmc_project/sensors/temperature/PSU1_TEMP
     sensorReadingType: 0x01
