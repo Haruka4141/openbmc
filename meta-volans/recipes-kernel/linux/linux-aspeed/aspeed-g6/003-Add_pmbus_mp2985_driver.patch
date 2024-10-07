@@ -1,3 +1,13 @@
+Add VRM controller MP2985 driver
+
+Note:
+    1. I tried kernel pmbus mp2975 driver's mp2973 device, but seems it will do some configure on MP2985.
+       This is will cause some voltage drop. CPLD will block power on.
+       So I add mp2985 driver which based on mp2975, this driver only support basic pmbus.
+    2. Official mp2985 driver needs linux kernel source support.
+    2. You need power on to get correct temp1 reading.
+    3. If you bind i2c pmbus driver on mp2985, mp2985 i2c will malfunction.
+
 diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
 index b78cedb133c8..1a8a9da67bf6 100644
 --- a/drivers/hwmon/pmbus/Makefile

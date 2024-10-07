@@ -1,3 +1,8 @@
+Add GNR PECI support for kernel 6.6
+
+Note: Granite Rapids PECI needs Intel support.
+      I follow Sapphire Rapids for configuring GNR PECI.
+
 diff --git a/drivers/hwmon/peci/cputemp.c b/drivers/hwmon/peci/cputemp.c
 index a812c15948d9..93065d51c671 100644
 --- a/drivers/hwmon/peci/cputemp.c

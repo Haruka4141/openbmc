@@ -1,3 +1,11 @@
+Add power/reset button GPIO pass-through support
+
+Note: GPIO pass-through is not working after pull high/low.
+Reference: https://lists.ozlabs.org/pipermail/openbmc/2022-July/031447.html
+Added patches:
+    1. https://github.com/Intel-BMC/linux/commit/7571cc86cbb4eded29aa70dbcffe84a02a22ee08
+    2. https://github.com/Intel-BMC/openbmc/blob/intel/meta-openbmc-mods/meta-wht/recipes-kernel/linux/linux-aspeed/0001-Enable-GPIOE0-and-GPIOE2-pass-through-by-default.patch
+
 diff --git a/drivers/gpio/gpio-aspeed.c b/drivers/gpio/gpio-aspeed.c
 index 781183d28a98..8c4e5665eb1f 100644
 --- a/drivers/gpio/gpio-aspeed.c
