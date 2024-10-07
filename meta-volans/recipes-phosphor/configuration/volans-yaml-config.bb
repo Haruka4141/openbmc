@@ -9,6 +9,7 @@ SRC_URI = " \
     file://volans-ipmi-sensors.yaml \
     file://volans-ipmi-fru.yaml \
     file://volans-ipmi-fru-properties.yaml \
+    file://volans-ipmi-inventory-sensors.yaml \
     "
 
 S = "${WORKDIR}"
@@ -20,12 +21,15 @@ do_install() {
         ${D}${datadir}/${BPN}/ipmi-fru-read.yaml
     install -m 0644 -D volans-ipmi-fru-properties.yaml \
         ${D}${datadir}/${BPN}/ipmi-extra-properties.yaml
+    install -m 0644 -D volans-ipmi-inventory-sensors.yaml \
+        ${D}${datadir}/${BPN}/ipmi-inventory-sensors.yaml
 }
 
 FILES:${PN}-dev = " \
     ${datadir}/${BPN}/ipmi-sensors.yaml \
     ${datadir}/${BPN}/ipmi-fru-read.yaml \
     ${datadir}/${BPN}/ipmi-extra-properties.yaml \
+    ${datadir}/${BPN}/ipmi-inventory-sensors.yaml \
     "
 
 ALLOW_EMPTY:${PN} = "1"
