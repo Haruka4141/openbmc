@@ -1,0 +1,34 @@
+diff --git a/include/sel_logger.hpp b/include/sel_logger.hpp
+index a51a01c..d8ab826 100644
+--- a/include/sel_logger.hpp
++++ b/include/sel_logger.hpp
+@@ -46,3 +46,4 @@ static uint16_t
+                        const std::string& message, const std::string& path,
+                        const std::vector<uint8_t>& selData, const bool& assert,
+                        const uint16_t& genId, T&&... metadata);
++static void toHexStr(const std::vector<uint8_t>& data, std::string& hexStr);
+diff --git a/include/threshold_event_monitor.hpp b/include/threshold_event_monitor.hpp
+index cea25c1..6e06e8f 100644
+--- a/include/threshold_event_monitor.hpp
++++ b/include/threshold_event_monitor.hpp
+@@ -314,13 +314,19 @@ inline static sdbusplus::bus::match_t startThresholdAssertMonitor(
+             sdbusplus::message_t AddToLog = conn->new_method_call(
+                 "xyz.openbmc_project.Logging", "/xyz/openbmc_project/logging",
+                 "xyz.openbmc_project.Logging.Create", "Create");
++            std::string selDataStr;
++            toHexStr(eventData, selDataStr);
+             AddToLog.append(journalMsg, LogLevel,
+                             std::map<std::string, std::string>(
+                                 {{"SENSOR_PATH", std::string(msg.get_path())},
+                                  {"EVENT", threshold},
+                                  {"DIRECTION", direction},
+                                  {"THRESHOLD", std::to_string(thresholdVal)},
+-                                 {"READING", std::to_string(assertValue)}}));
++                                 {"READING", std::to_string(assertValue)},
++                                 {"RECORD_TYPE", std::to_string(selSystemType)},
++                                 {"EVENT_DIR", std::to_string(assert)},
++                                 {"GENERATOR_ID", std::to_string(selBMCGenID)},
++                                 {"SENSOR_DATA", selDataStr}}));
+             conn->call(AddToLog);
+         }
+ #else
