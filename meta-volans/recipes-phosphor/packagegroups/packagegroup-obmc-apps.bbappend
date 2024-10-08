@@ -5,4 +5,6 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  entity-manager \
                                  dbus-sensors \
                                  phosphor-sel-logger \
+                                 phosphor-post-code-manager \
+                                 phosphor-host-postd \
                                  "
