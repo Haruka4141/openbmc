@@ -7,4 +7,5 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  phosphor-sel-logger \
                                  phosphor-post-code-manager \
                                  phosphor-host-postd \
+                                 dbus-top \
                                  "
