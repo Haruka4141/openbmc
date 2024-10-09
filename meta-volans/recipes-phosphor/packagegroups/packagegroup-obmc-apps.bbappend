@@ -8,4 +8,5 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  phosphor-post-code-manager \
                                  phosphor-host-postd \
                                  dbus-top \
+                                 phosphor-u-boot-env-mgr \
                                  "
