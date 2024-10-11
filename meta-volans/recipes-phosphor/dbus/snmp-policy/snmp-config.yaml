@@ -1,0 +1,23 @@
+- name: errorlog path group
+  class: group
+  group: path
+  members:
+    - meta: PATH
+      path: /xyz/openbmc_project/logging
+
+- name: pathwatch errorlog
+  description: >
+      'A pathwatch watches on the specified object path group. pathcallback are
+      actions PDM should take when instructed to do so.'
+  class: pathwatch
+  pathwatch: path
+  paths: errorlog path group
+  pathcallback: create errorlog trap
+
+- name: create errorlog trap
+  description: >
+      'eventType specifies the type of the SNMP notification.'
+  class: pathcallback
+  pathcallback: eventpath
+  paths: errorlog path group
+  eventType: ErrorTrap
