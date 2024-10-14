@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="64"
+   height="40"
+   viewBox="0 0 64 40"
+   sodipodi:docname="AIC.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="20.925"
+     inkscape:cx="30.919952"
+     inkscape:cy="19.713262"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="1071"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1"
+     showgrid="false">
+    <inkscape:grid
+       id="grid50000"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="false" />
+  </sodipodi:namedview>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <path
+       id="path50001"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd"
+       d="m 10.712203,20.579595 c 12.097693,0 12.097693,0 12.097693,0 v -3.615791 l -4.545083,-4.545083 h -3.1258 l -4.452154,4.452154 z M 6.08,23.434543 V 14.549085 L 9.5252255,11.114543 12.970451,7.68 h 3.840492 3.840492 L 23.925718,10.965464 27.2,14.250928 V 23.285464 32.32 H 25.12 23.04 V 28.64 24.96 H 16.8 10.56 v 3.68 3.68 H 8.32 6.08 Z M 30.4,20 V 7.68 h 2.08 2.08 V 20 32.32 H 32.48 30.4 Z M 41.289265,31.529863 40.420231,30.621864 C 39.906588,30.085191 39.026747,29.267058 39.026747,29.267058 L 37.76,28.030113 V 20.006474 11.982836 L 39.928031,9.8314178 42.096062,7.68 H 49.848031 57.6 v 2.24 2.24 H 50.89975 44.1995 l -1.002607,0.91574 -1.002607,0.91574 v 6.002892 6.002892 L 43.077012,26.918632 43.959738,27.84 H 50.779869 57.6 v 2.24 2.24 h -7.78422 -7.784219 z" />
+  </g>
+</svg>
