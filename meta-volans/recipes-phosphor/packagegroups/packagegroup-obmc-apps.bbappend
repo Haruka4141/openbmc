@@ -10,4 +10,7 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  dbus-top \
                                  phosphor-u-boot-env-mgr \
                                  phosphor-dbus-monitor \
+                                 phosphor-power \
+                                 phosphor-power-systemd-links-monitor \
+                                 phosphor-power-monitor \
                                  "

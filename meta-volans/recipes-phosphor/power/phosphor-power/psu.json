@@ -1,0 +1,19 @@
+{
+  "inventoryPMBusAccessType": "HwmonDeviceDebug",
+  "fruConfigs": [
+    {
+      "propertyName": "Model",
+      "fileName": "mfr_model",
+      "interface": "xyz.openbmc_project.Inventory.Decorator.Asset"
+    },
+    {
+      "propertyName": "Version",
+      "fileName": "mfr_revision",
+      "interface": "xyz.openbmc_project.Software.Version"
+    }
+  ],
+  "psuDevices": {
+    "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply0" : "/sys/bus/i2c/devices/7-0058",
+    "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply1" : "/sys/bus/i2c/devices/7-0059"
+  }
+}
