@@ -1,0 +1,19 @@
+[
+    {
+        "path": "system/board/Volans_Motherboard",
+        "endpoints":
+        [
+            {
+                "types":
+                {
+                    "fType": "cooled_by",
+                    "rType": "cooling"
+                },
+                "paths":
+                [
+                    "/xyz/openbmc_project/inventory/system/board/Volans_Motherboard/FAN1"
+                ]
+            }
+        ]
+    }
+]
