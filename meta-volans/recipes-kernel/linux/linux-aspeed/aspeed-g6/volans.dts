@@ -567,3 +567,15 @@
 	status = "okay";
 	snoop-ports = <0x80>;
 };
+
+&uart_routing {
+	status = "okay";
+};
+
+&uart2 {
+    status = "okay";
+};
+
+&uart3 {
+    status = "okay";
+};
