@@ -472,8 +472,7 @@
 	/* Enable GPIOP0 and GPIOP2 pass-through by default */
 	pinctrl-names = "pass-through";
 	pinctrl-0 = <&pinctrl_thru0_default
-				 &pinctrl_thru1_default
-				 &pinctrl_gpiov6_unbiased_default>;	// Only for EVT MB: Disable internal pull down
+				 &pinctrl_thru1_default>;
 	gpio-line-names =
 		/*A0 - A7*/     "", "", "", "", "", "", "", "",
 		/*B0 - B7*/     "", "", "", "", "", "", "", "",
@@ -501,6 +500,10 @@
 		/*X0 - X7*/     "", "", "", "", "", "", "", "",
 		/*Y0 - Y7*/     "", "", "", "", "", "", "", "",
 		/*Z0 - Z7*/     "", "", "", "", "", "", "", "";
+	GPIOX4 {
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_gpiox4_unbiased_default>; // Disable GPIOX4 intenal pull-down for chassis intrusion
+	};
 };
 
 &gpio1{
@@ -553,8 +556,8 @@
 };
 
 &pinctrl {
-	pinctrl_gpiov6_unbiased_default: gpiov6 {
-		pins = "AD15";
+	pinctrl_gpiox4_unbiased_default: gpiox4 {
+		pins = "AB9";
 		bias-disable;
 	};
 };
