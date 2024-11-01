@@ -15,4 +15,7 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  phosphor-power-monitor \
                                  phosphor-ipmi-kcs \
                                  phosphor-image-signing \
+                                 phosphor-ipmi-blobs \
+                                 phosphor-ipmi-flash \
+                                 noverify-bmc-update \
                                  "
