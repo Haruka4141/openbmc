@@ -13,4 +13,6 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  phosphor-power \
                                  phosphor-power-systemd-links-monitor \
                                  phosphor-power-monitor \
+                                 phosphor-ipmi-kcs \
+                                 phosphor-image-signing \
                                  "
