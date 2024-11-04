@@ -12,4 +12,6 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  phosphor-dbus-monitor \
                                  phosphor-ipmi-kcs \
                                  phosphor-image-signing \
+                                 phosphor-misc-usb-ctrl \
+                                 usbnet \
                                  "

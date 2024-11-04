@@ -418,14 +418,6 @@
 	status = "okay";
 };
 
-&ehci1 {
-	status = "okay";
-};
-
-&uhci {
-	status = "okay";
-};
-
 /*
  * The signal voltage of sdhci0 and sdhci1 on AST2600-A2 EVB is able to be
  * toggled by GPIO pins.

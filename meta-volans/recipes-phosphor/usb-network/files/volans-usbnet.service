@@ -1,0 +1,12 @@
+[Unit]
+Description=Ethernet over USB gadget device
+After=phosphor-ipmi-host.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/volans_usbnet.sh
+ExecStop=/usr/bin/usb-ctrl ecm usbnet off
+
+[Install]
+WantedBy=multi-user.target
