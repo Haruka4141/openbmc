@@ -496,10 +496,6 @@
 		/*X0 - X7*/     "", "", "", "", "", "", "", "",
 		/*Y0 - Y7*/     "", "", "", "", "", "", "", "",
 		/*Z0 - Z7*/     "", "", "", "", "", "", "", "";
-	GPIOX4 {
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_gpiox4_unbiased_default>; // Disable GPIOX4 intenal pull-down for chassis intrusion
-	};
 };
 
 &gpio1{
@@ -548,6 +544,8 @@
 };
 
 &chassis {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_gpiox4_unbiased_default>; // Disable GPIOX4 intenal pull-down for chassis intrusion
 	status = "okay";
 };
 
