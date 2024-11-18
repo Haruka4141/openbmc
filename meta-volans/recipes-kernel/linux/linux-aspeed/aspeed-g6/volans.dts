@@ -269,10 +269,6 @@
 	clk-phase-mmc-hs200 = <9>, <225>;
 };
 
-&rtc {
-	status = "okay";
-};
-
 &fmc {
 	status = "okay";
 	flash@0 {
@@ -336,6 +332,10 @@
 
 &i2c3 {
 	status = "okay";
+	rtc@6f {
+		compatible = "nuvoton,nct3018y";
+		reg = <0x6f>;
+	};
 };
 
 &i2c4 {
