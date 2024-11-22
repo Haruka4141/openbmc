@@ -16,4 +16,5 @@ RDEPENDS:${PN}-extras:append = " webui-vue \
                                  usbnet \
                                  phosphor-health-monitor \
                                  phosphor-ecc \
+                                 phosphor-watchdog \
                                  "
