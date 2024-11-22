@@ -173,3 +173,8 @@
   sensorID: 0xE7
   sensorType: 0x01
   offset: 0xff
+/xyz/openbmc_project/metrics/memory/BmcECC:
+  eventReadingType: 0x6f
+  sensorID: 0xF0
+  sensorType: 0x0C
+  offset: 0x00
