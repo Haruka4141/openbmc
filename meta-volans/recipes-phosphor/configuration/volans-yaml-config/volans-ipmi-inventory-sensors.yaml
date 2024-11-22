@@ -178,3 +178,8 @@
   sensorID: 0xF0
   sensorType: 0x0C
   offset: 0x00
+/xyz/openbmc_project/watchdog/host0:
+  eventReadingType: 0x6f
+  sensorID: 0xF2
+  sensorType: 0x23
+  offset: 0x01

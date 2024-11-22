@@ -773,3 +773,31 @@
             0:
               set: xyz.openbmc_project.Chassis.Intrusion.Status.HardwareIntrusion
               type: string
+
+0xF2:
+  entityID: 0x2e
+  entityInstance: 0
+  interfaces:
+    xyz.openbmc_project.State.Watchdog:
+      ExpireAction:
+        Offsets:
+          0x00:
+            assert: xyz.openbmc_project.State.Watchdog.Action.None
+            type: string
+          0x01:
+            assert: xyz.openbmc_project.State.Watchdog.Action.HardReset
+            type: string
+          0x02:
+            assert: xyz.openbmc_project.State.Watchdog.Action.PowerOff
+            type: string
+          0x03:
+            assert: xyz.openbmc_project.State.Watchdog.Action.PowerCycle
+            type: string
+  mutability: Mutability::Write|Mutability::Read
+  path: /xyz/openbmc_project/watchdog/host0
+  readingType: assertion
+  sensorNamePattern: nameLeaf
+  sensorReadingType: 0x6F
+  sensorName: Watchdog_BMC
+  sensorType: 0x23
+  serviceInterface: org.freedesktop.DBus.Properties
