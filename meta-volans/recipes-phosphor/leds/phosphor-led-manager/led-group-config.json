@@ -1,0 +1,26 @@
+{
+    "leds": [
+        {
+            "group": "enclosure_identify",
+            "members": [
+                {
+                    "Name": "identify",
+                    "Action": "Blink",
+                    "DutyOn": 50,
+                    "Period": 1000,
+                    "Priority": "On"
+                }
+            ]
+        },
+        {
+            "group": "enclosure_fault",
+            "members": [
+                {
+                    "Name": "health",
+                    "Action": "On",
+                    "Priority": "On"
+                }
+            ]
+        }
+    ]
+}
