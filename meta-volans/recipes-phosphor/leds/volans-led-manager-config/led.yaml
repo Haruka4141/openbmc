@@ -3,3 +3,7 @@ enclosure_identify:
         Action: 'Blink'
         DutyOn: 50
         Period: 1000
+enclosure_fault:
+    health:
+        Action: "On"
+        Priority: "On"
