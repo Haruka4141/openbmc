@@ -2,74 +2,29 @@
     {
         "Exposes": [
             {
-                "Index": 0,
-                "Name": "FAN1",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 500
-                    }
-                ],
-                "Type": "AspeedFan"
+                "Name": "Fan 1 connector",
+                "Tachs": [0],
+                "Type": "FanConnector"
             },
             {
-                "Index": 1,
-                "Name": "FAN2",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 500
-                    }
-                ],
-                "Type": "AspeedFan"
+                "Name": "Fan 2 connector",
+                "Tachs": [1],
+                "Type": "FanConnector"
             },
             {
-                "Index": 2,
-                "Name": "FAN3",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 500
-                    }
-                ],
-                "Type": "AspeedFan"
+                "Name": "Fan 3 connector",
+                "Tachs": [2],
+                "Type": "FanConnector"
             },
             {
-                "Index": 3,
-                "Name": "FAN4",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 500
-                    }
-                ],
-                "Type": "AspeedFan"
+                "Name": "Fan 4 connector",
+                "Tachs": [3],
+                "Type": "FanConnector"
             },
             {
-                "Index": 4,
-                "Name": "FAN5",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 500
-                    }
-                ],
-                "Type": "AspeedFan"
+                "Name": "Fan 5 connector",
+                "Tachs": [4],
+                "Type": "FanConnector"
             },
             {
                 "Address": "0x49",
@@ -589,7 +544,9 @@
         "Probe": "TRUE",
         "Type": "Board",
         "ProductId": "0x4B00",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {},
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "AIC"
+        },
         "xyz.openbmc_project.Inventory.Item.System": {}
     },
     {

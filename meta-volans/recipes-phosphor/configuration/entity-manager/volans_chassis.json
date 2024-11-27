@@ -1,0 +1,85 @@
+{
+    "Exposes": [
+        {
+            "BindConnector": "Fan 1 connector",
+            "Index": 0,
+            "Name": "FAN1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 1,
+            "Name": "FAN2",
+            "PowerState": "On",
+            "BindConnector": "Fan 2 connector",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 2,
+            "Name": "FAN3",
+            "PowerState": "On",
+            "BindConnector": "Fan 3 connector",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 3,
+            "Name": "FAN4",
+            "PowerState": "On",
+            "BindConnector": "Fan 4 connector",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 4,
+            "Name": "FAN5",
+            "PowerState": "On",
+            "BindConnector": "Fan 5 connector",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        }
+    ],
+    "Name": "Volans Chassis",
+    "Probe": "FOUND('Volans Motherboard')",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "AIC"
+    }
+}
